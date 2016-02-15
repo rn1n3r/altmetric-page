@@ -128,9 +128,12 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
         article.innerHTML += "<br><div class = 'authors'>" + authorStr + "</div><br style='clear:both'/>";
 
       });
-
-		
-      $.getScript("https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js");
+		// Load script to generate Altmetric donuts
+		var embed = document.createElement("script");
+		embed.type = "text/javascript";
+		embed.src = "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js";
+		document.body.appendChild(embed);
+      //$.getScript("https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js");
       $body = $("body");
     }
 
