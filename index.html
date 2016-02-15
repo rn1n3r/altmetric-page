@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Altmetric Feed Test</title>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="alt.js"></script>
+
+
+</head>
+
+<body>
+
+<select id="depSelect" onchange="getAltmetricFeed(10)">
+  <option value="all" selected="selected">All Departments</option>
+  <option value="acb">Anatomy and Cell Biology</option>
+  <option value="anesthesia">Anesthesia and Perioperative Medicine</option>
+  <option value="biochem">Biochemistry</option>
+  <option value="cns">Clinical Neurological Services</option>
+  <option value="dentistry">Dentistry</option>
+  <option value="epibio">Epidemiology & Biostatistics</option>
+  <option value="fam">Family Medicine</option>
+  <option value="medbio">Medical Biophysics</option>
+  <option value="medimg">Medical Imaging</option>
+  <option value="medicine">Medicine</option>
+  <option value="microimm">Microbiology and Immunology</option>
+  <option value="obgyn">Obstetrics and Gynaecology</option>
+  <option value="oncology">Oncology</option>
+  <option value="ophthalm">Ophthalmology</option>
+  <option value="otolaryng">Otolaryngology</option>
+  <option value="paediatrics">Paediatrics</option>
+  <option value="palm">Pathology and Laboratory Medicine</option>
+  <option value="physmed">Physical Medicine and Rehabilitation</option>
+  <option value="physpharm">Physiology and Pharmacology</option>
+  <option value="psychiatry">Psychiatry</option>
+  <option value="pubhealth">Public Health</option>
+  <option value="robarts">Robarts</option>
+  <option value="surgery">Surgery</option>
+
+</select>
+
+<select id="timeSelect" onchange="getAltmetricFeed(10)">
+  <option value="1w" selected="selected">Past week</option>
+  <option value="1m">Past month</option>
+  <option value="3m">Past 3 months</option>
+  <option value="6m">Past 6 months</option>
+  <option value="1y">Past year</option>
+  <option value="at">Any time</option>
+
+
+</select>
+
+
+<div class ="article"></div>
+
+
+<script type ="text/javascript">
+getAltmetricFeed(10);
+
+</script>
+<div class="modal"></div>
+
+</body>
+
+
+
+
+
+</html>
