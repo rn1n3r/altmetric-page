@@ -6,7 +6,7 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
   var departmentID = ""; // default to all departments
 
   var article = document.getElementById("article")
-  article.innerHTML = null;
+  article.innerHTML = "";
 
   if (arguments.length == 1) {
     var e = document.getElementById("depSelect");
