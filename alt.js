@@ -99,7 +99,7 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
     sortJSONByProperty(data.top_citations_by_mentions, 'altmetric_score.score', -1);
 	
     if (data.top_citations_by_mentions.length == 0)
-    $(".article").append("No results found!");
+	article.innerHTML += "No results found!";
     else {
 
       $.each(data.top_citations_by_mentions, function (i, value) {
