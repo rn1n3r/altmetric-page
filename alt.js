@@ -1,7 +1,10 @@
 
+// Global variable for max number of entries shown
+var maxNumberOfEntries = 0;
 // Get JSON data from API
-function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
+function getAltmetricFeed (max, department, timeFrame) {
 
+	maxNumberOfEntries = max;
   // Building the API request
   var departmentID = ""; // default to all departments
 
@@ -94,16 +97,28 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
 
   // Altmetric API call to get top mentioned articles for past week
   var api = "https://www.altmetric.com/api/v1/summary_report/" + time + "?num_results=100&group=schulichmd" + departmentID + "&citation_type=news%2Carticle%2Cclinical_trial_study_record%2Cdataset%2Cbook%2Cgeneric&order_by=score";
+	
+	var getJSON = document.createElement("script");
+	getJSON.type = "text/javascript";
+	getJSON.src = api + "&callback=printResults";
+	getJSON.setAttribute("class", "api");
+	document.body.appendChild(getJSON);
+	getJSON.parentNode.removeChild(getJSON);
 
-  $.getJSON(api, function(data) {
+}
+
+
+
+
+  function printResults(data) {
     sortJSONByProperty(data.top_citations_by_mentions, 'altmetric_score.score', -1);
 	
     if (data.top_citations_by_mentions.length == 0)
-	article.innerHTML += "No results found!";
+		article.innerHTML += "No results found!";
     else {
-
-      $.each(data.top_citations_by_mentions, function (i, value) {
-        if (i >=maxNumberOfEntries) return false;
+		var limit = (data.top_citations_by_mentions.length < maxNumberOfEntries) ? data.top_citations_by_mentions.length : maxNumberOfEntries;
+      for (var i = 0; i < limit; i++) {
+        var value = data.top_citations_by_mentions[i];
 		var newdiv = document.createElement("div");
 		newdiv.setAttribute("class","altmetric-embed");
 		newdiv.setAttribute("data-badge-type", "medium-donut");
@@ -127,31 +142,19 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
 
         article.innerHTML += "<br><div class = 'authors'>" + authorStr + "</div><br style='clear:both'/>";
 
-      });
+      }
 		// Load script to generate Altmetric donuts
 		var embed = document.createElement("script");
 		embed.type = "text/javascript";
 		embed.src = "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js";
 		document.body.appendChild(embed);
+		embed.parentNode.removeChild(embed); // not sure if this does anything really
       //$.getScript("https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js");
-      $body = $("body");
+      
     }
 
-	// Loading animation
-    $(document).
-      ajaxStart(function() {
-		$body.addClass("loading");
-	});
-	$(document).
-      ajaxStop(function() {
-		$body.removeClass("loading");
-	});
-    
-
-
-  });
-
 }
+
 
 // To sort the articles by Altmetric score
 function sortJSONByProperty (json, prop, direction) {
