@@ -125,8 +125,7 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
           authorStr = authors.join(', ');
         }
 
-        article.innerHTML += "<br><div class = 'authors'>" + authorStr + "</div>";
-        article.innerHTML += "<br style='clear:both'/>";
+        article.innerHTML += "<br><div class = 'authors'>" + authorStr + "</div><br style='clear:both'/>";
 
       });
 
