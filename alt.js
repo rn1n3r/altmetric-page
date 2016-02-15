@@ -130,15 +130,10 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
     }
 
 	// Loading animation
-    $(document).
-      ajaxStart(function() {
-		$body.addClass("loading");
-	});
-	$(document).
-      ajaxStop(function() {
-		$body.removeClass("loading");
-	});
-    
+    $(document).on({
+      ajaxStart: function() { $body.addClass("loading");},
+      ajaxStop: function() { $body.removeClass("loading"); }
+    });
 
 
   });
