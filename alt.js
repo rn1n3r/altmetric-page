@@ -6,7 +6,7 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
   var departmentID = ""; // default to all departments
 
   var article = document.getElementById("article")
-  article.innerHTML = null;
+  //article.innerHTML = null;
 
   if (arguments.length == 1) {
     var e = document.getElementById("depSelect");
@@ -97,19 +97,24 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
 
   $.getJSON(api, function(data) {
     sortJSONByProperty(data.top_citations_by_mentions, 'altmetric_score.score', -1);
-
+	
     if (data.top_citations_by_mentions.length == 0)
     $(".article").append("No results found!");
     else {
 
       $.each(data.top_citations_by_mentions, function (i, value) {
         if (i >=maxNumberOfEntries) return false;
-        if (typeof value.doi == 'undefined')
-          article.innerHTML += "<div class='altmetric-embed' data-badge-type='medium-donut' data-pmid='" + value.pmid + "'</div>"; // if it doesn't have a doi...
-        else
-          article.innerHTML += "<div class='altmetric-embed' data-badge-type='medium-donut' data-doi='" + value.doi + "'</div>"; // Altmetric donut
-        article.innerHTML += "<br><b><a href='" + value.links[0] + "'>"+value.title+"</a><b>";
-
+		var newdiv = document.createElement("div");
+		newdiv.setAttribute("class","altmetric-embed");
+		newdiv.setAttribute("data-badge-type", "medium-donut");
+        if (typeof value.doi == 'undefined') {
+			newdiv.setAttribute("data-pmid", value.pmid);      
+        }
+		else 
+			newdiv.setAttribute("data-doi", value.doi);
+    
+		article.appendChild(newdiv); // if it doesn't have a doi...
+		article.innerHTML += "<br><b><a href='" + value.links[0] + "'>"+value.title+"</a><b>";
         var authors = value.authors;
         if (typeof authors == 'undefined');
         else if (authors.length > 6) {
