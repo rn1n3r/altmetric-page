@@ -104,10 +104,10 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
       $.each(data.top_citations_by_mentions, function (i, value) {
         if (i >=maxNumberOfEntries) return false;
         if (typeof value.doi == 'undefined')
-          $(".article").append("<div class='altmetric-embed' data-badge-type='medium-donut' data-pmid='" + value.pmid + "'</div>"); // if it doesn't have a doi...
+          document.getElementById("article").innerHTML += "<div class='altmetric-embed' data-badge-type='medium-donut' data-pmid='" + value.pmid + "'</div>"; // if it doesn't have a doi...
         else
-          $(".article").append("<div class='altmetric-embed' data-badge-type='medium-donut' data-doi='" + value.doi + "'</div>"); // Altmetric donut
-        $(".article").append("<br><b><a href='" + value.links[0] + "'>"+value.title+"</a><b>");
+          document.getElementById("article").innerHTML += "<div class='altmetric-embed' data-badge-type='medium-donut' data-doi='" + value.doi + "'</div>"; // Altmetric donut
+        document.getElementById("article").innerHTML += "<br><b><a href='" + value.links[0] + "'>"+value.title+"</a><b>";
 
         var authors = value.authors;
         if (typeof authors == 'undefined');
@@ -119,8 +119,8 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
           authorStr = authors.join(', ');
         }
 
-        $(".article").append("<br><div class = 'authors'>" + authorStr + "</div>");
-        $(".article").append("<br style='clear:both'/>");
+        document.getElementById("article").innerHTML += "<br><div class = 'authors'>" + authorStr + "</div>";
+        document.getElementById("article").innerHTML += "<br style='clear:both'/>";
 
       });
 
