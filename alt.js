@@ -124,11 +124,12 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
 
       });
 
-
+		
       $.getScript("https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js");
       $body = $("body");
     }
 
+	// Loading animation
     $(document).on({
       ajaxStart: function() { $body.addClass("loading");},
       ajaxStop: function() { $body.removeClass("loading"); }
@@ -139,6 +140,7 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
 
 }
 
+// To sort the articles by Altmetric score
 function sortJSONByProperty (json, prop, direction) {
   direction = (arguments.length == 3) ? direction : -1;
   if (json && json.constructor === Array) {
