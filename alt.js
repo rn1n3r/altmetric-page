@@ -93,7 +93,7 @@ function getAltmetricFeed (max, department, timeFrame) {
   }
 
   // Altmetric API call to get top mentioned articles for past week
-  var api = "https://www.altmetric.com/api/v1/summary_report/" + time + "?num_results=100&group=schulichmd" + departmentID + "&citation_type=news%2Carticle%2Cclinical_trial_study_record%2Cdataset%2Cbook%2Cgeneric&order_by=score";
+	var api = "http://www.altmetric.com/api/v1/summary_report/" + time + "?num_results=100&group=schulichmd" + departmentID + "&citation_type=news%2Carticle%2Cclinical_trial_study_record%2Cdataset%2Cbook%2Cgeneric&order_by=score";
 
   	var getJSON = document.createElement("script");
 	getJSON.type = "text/javascript";
