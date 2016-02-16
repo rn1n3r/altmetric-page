@@ -103,7 +103,6 @@ function getAltmetricFeed (max, department, timeFrame) {
 	getJSON.src = api + "&callback=printResults";
 	getJSON.setAttribute("class", "api");
 	document.body.appendChild(getJSON);
-	document.body.className += "loading"; // loading animation
 	getJSON.parentNode.removeChild(getJSON);
 
 }
@@ -112,7 +111,6 @@ function getAltmetricFeed (max, department, timeFrame) {
 
 
   function printResults(data) {
-	
     sortJSONByProperty(data.top_citations_by_mentions, 'altmetric_score.score', -1);
 	
     if (data.top_citations_by_mentions.length == 0)
@@ -154,8 +152,6 @@ function getAltmetricFeed (max, department, timeFrame) {
       //$.getScript("https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js");
       
     }
-	document.body.className = ""; // turn off the loading animation
-	
 
 }
 
