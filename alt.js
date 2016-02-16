@@ -96,7 +96,7 @@ function getAltmetricFeed (max, department, timeFrame) {
 	var api = "https://www.altmetric.com/api/v1/summary_report/" + time + "?num_results=100&group=schulichmd" + departmentID + "&citation_type=news%2Carticle%2Cclinical_trial_study_record%2Cdataset%2Cbook%2Cgeneric&order_by=score";
 
   	var getJSON = document.createElement("script");
-	getJSON.type = "application/json";
+	getJSON.type = "text/javascript";
 	getJSON.src = api + "&callback=printResults";
 	getJSON.setAttribute("class", "api");
 	document.body.appendChild(getJSON);
