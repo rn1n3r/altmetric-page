@@ -97,15 +97,18 @@ function getAltmetricFeed (max, department, timeFrame) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", api);
 
+	document.body.className	+= "loading";
+
+
 	xhr.onload = function () {
 	var data = JSON.parse(xhr.responseText);
 	console.log(data);
     sortJSONByProperty(data.top_citations_by_mentions, 'altmetric_score.score', -1);
-	
+
     if (data.top_citations_by_mentions.length == 0)
 	article.innerHTML += "No results found!";
     else {
-		
+
       var limit = (data.top_citations_by_mentions.length < maxNumberOfEntries) ? data.top_citations_by_mentions.length : maxNumberOfEntries;
       for (var i = 0; i < limit; i++) {
         var value = data.top_citations_by_mentions[i];
@@ -113,11 +116,11 @@ function getAltmetricFeed (max, department, timeFrame) {
 		newdiv.setAttribute("class","altmetric-embed");
 		newdiv.setAttribute("data-badge-type", "medium-donut");
         if (typeof value.doi == 'undefined') {
-			newdiv.setAttribute("data-pmid", value.pmid);      
+			newdiv.setAttribute("data-pmid", value.pmid);
         }
-		else 
+		else
 			newdiv.setAttribute("data-doi", value.doi);
-    
+
 		article.appendChild(newdiv); // if it doesn't have a doi...
 		article.innerHTML += "<br><b><a href='" + value.links[0] + "'>"+value.title+"</a><b>";
         var authors = value.authors;
@@ -139,24 +142,13 @@ function getAltmetricFeed (max, department, timeFrame) {
 		embed.src = "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js";
 		document.body.appendChild(embed);
       //$.getScript("https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js");
-      
+    document.body.className = "";
     }
-	$body = $("body");
-	// Loading animation
-    $(document).
-      ajaxStart(function() {
-		$body.addClass("loading");
-	});
-	$(document).
-      ajaxStop(function() {
-		$body.removeClass("loading");
-	});
-    
+
+
 
 }
 xhr.send();
-  
-
 }
 
 // To sort the articles by Altmetric score
