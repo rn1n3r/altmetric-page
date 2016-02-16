@@ -96,6 +96,9 @@ function getAltmetricFeed (max, department, timeFrame) {
 	var api = "https://www.altmetric.com/api/v1/summary_report/" + time + "?num_results=100&group=schulichmd" + departmentID + "&citation_type=news%2Carticle%2Cclinical_trial_study_record%2Cdataset%2Cbook%2Cgeneric&order_by=score";
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", api);
+	
+	document.body.className	+= "loading";  
+
 
 	xhr.onload = function () {
 	var data = JSON.parse(xhr.responseText);
@@ -139,24 +142,13 @@ function getAltmetricFeed (max, department, timeFrame) {
 		embed.src = "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js";
 		document.body.appendChild(embed);
       //$.getScript("https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js");
-      
+      document.body.className = "";
     }
-	$body = $("body");
-	// Loading animation
-    $(document).
-      ajaxStart(function() {
-		$body.addClass("loading");
-	});
-	$(document).
-      ajaxStop(function() {
-		$body.removeClass("loading");
-	});
+	
     
 
 }
 xhr.send();
-  
-
 }
 
 // To sort the articles by Altmetric score
