@@ -101,8 +101,10 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
     if (data.top_citations_by_mentions.length == 0)
 	article.innerHTML += "No results found!";
     else {
-
-      $.each(data.top_citations_by_mentions, function (i, value) {
+		
+      var limit = (data.top_citations_by_mentions.length < maxNumberOfEntries) ? data.top_citations_by_mentions.length : maxNumberOfEntries;
+      for (var i = 0; i < limit; i++) {
+        var value = data.top_citations_by_mentions[i];
         if (i >=maxNumberOfEntries) return false;
 		var newdiv = document.createElement("div");
 		newdiv.setAttribute("class","altmetric-embed");
@@ -127,7 +129,7 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
 
         article.innerHTML += "<br><div class = 'authors'>" + authorStr + "</div><br style='clear:both'/>";
 
-      });
+      }
 		// Load script to generate Altmetric donuts
 		var embed = document.createElement("script");
 		embed.type = "text/javascript";
