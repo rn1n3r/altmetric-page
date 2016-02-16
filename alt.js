@@ -1,7 +1,7 @@
-
+var maxNumberOfEntries;
 // Get JSON data from API
-function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
-
+function getAltmetricFeed (max, department, timeFrame) {
+	maxNumberOfEntries = max;
   // Building the API request
   var departmentID = ""; // default to all departments
 
@@ -95,7 +95,16 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
   // Altmetric API call to get top mentioned articles for past week
   var api = "https://www.altmetric.com/api/v1/summary_report/" + time + "?num_results=100&group=schulichmd" + departmentID + "&citation_type=news%2Carticle%2Cclinical_trial_study_record%2Cdataset%2Cbook%2Cgeneric&order_by=score";
 
-  $.getJSON(api, function(data) {
+  	var getJSON = document.createElement("script");
+	getJSON.type = "text/javascript";
+	getJSON.src = api + "&callback=printResults";
+	getJSON.setAttribute("class", "api");
+	document.body.appendChild(getJSON);
+	getJSON.parentNode.removeChild(getJSON);
+
+}
+  
+  function printResults(data) {
     sortJSONByProperty(data.top_citations_by_mentions, 'altmetric_score.score', -1);
 	
     if (data.top_citations_by_mentions.length == 0)
@@ -105,7 +114,6 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
       var limit = (data.top_citations_by_mentions.length < maxNumberOfEntries) ? data.top_citations_by_mentions.length : maxNumberOfEntries;
       for (var i = 0; i < limit; i++) {
         var value = data.top_citations_by_mentions[i];
-        if (i >=maxNumberOfEntries) return false;
 		var newdiv = document.createElement("div");
 		newdiv.setAttribute("class","altmetric-embed");
 		newdiv.setAttribute("data-badge-type", "medium-donut");
@@ -136,9 +144,9 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
 		embed.src = "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js";
 		document.body.appendChild(embed);
       //$.getScript("https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js");
-      $body = $("body");
+      
     }
-
+	$body = $("body");
 	// Loading animation
     $(document).
       ajaxStart(function() {
@@ -151,7 +159,7 @@ function getAltmetricFeed (maxNumberOfEntries, department, timeFrame) {
     
 
 
-  });
+  
 
 }
 
