@@ -9,10 +9,14 @@ function getAltmetricFeed (max, department, timeFrame) {
 	var article = document.getElementById("article")
 	article.innerHTML = "";
 
-	if (arguments.length == 1) {
+	if (department == null) {	
 		var e = document.getElementById("depSelect");
-		var f = document.getElementById("timeSelect");
+
 		department = e.options[e.selectedIndex].value;
+
+	}
+	if (timeFrame == null) {
+		var f = document.getElementById("timeSelect");
 		time = f.options[f.selectedIndex].value;
 	}
 
@@ -151,10 +155,10 @@ function getAltmetricFeed (max, department, timeFrame) {
 			embed.type = "text/javascript";
 			embed.src = "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js";
 			document.body.appendChild(embed);
-			
-			document.body.className = ""; // done loading, so remove the loading class from the body
-		}
 
+
+		}
+		document.body.className = ""; // done loading, so remove the loading class from the body
 	}
 	xhr.send();
 }
