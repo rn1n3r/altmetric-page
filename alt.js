@@ -9,10 +9,14 @@ function getAltmetricFeed (max, department, timeFrame) {
 	var article = document.getElementById("article")
 	article.innerHTML = "";
 
-	if (arguments.length == 1) {
+	if (department == null)
 		var e = document.getElementById("depSelect");
-		var f = document.getElementById("timeSelect");
+
 		department = e.options[e.selectedIndex].value;
+
+	}
+	if (timeFrame == null) {
+		var f = document.getElementById("timeSelect");
 		time = f.options[f.selectedIndex].value;
 	}
 
