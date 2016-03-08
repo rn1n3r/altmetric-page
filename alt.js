@@ -151,10 +151,10 @@ function getAltmetricFeed (max, department, timeFrame) {
 			embed.type = "text/javascript";
 			embed.src = "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js";
 			document.body.appendChild(embed);
-			
-			document.body.className = ""; // done loading, so remove the loading class from the body
-		}
 
+
+		}
+		document.body.className = ""; // done loading, so remove the loading class from the body
 	}
 	xhr.send();
 }
