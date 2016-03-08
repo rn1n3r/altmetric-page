@@ -9,7 +9,7 @@ function getAltmetricFeed (max, department, timeFrame) {
 	var article = document.getElementById("article")
 	article.innerHTML = "";
 
-	if (department == null)
+	if (department == null) {	
 		var e = document.getElementById("depSelect");
 
 		department = e.options[e.selectedIndex].value;
