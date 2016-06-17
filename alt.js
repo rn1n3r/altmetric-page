@@ -53,46 +53,46 @@ function getAltmetricFeed (max, department, timeFrame) {
 		departmentID += "2420221a7f31a5733a5862c11ff0e1c1";
 		break;
 		case "medicine":
-		departmentID = "3124f507d6317741e882ca7532c6d32c";
+		departmentID += "3124f507d6317741e882ca7532c6d32c";
 		break;
 		case "microimm":
-		departmentID = "26e63501ae40451ac42d9c13ff655dc7";
+		departmentID += "26e63501ae40451ac42d9c13ff655dc7";
 		break;
 		case "obgyn":
-		departmentID = "8c2b6dba50578d88f2df907ec5334c90";
+		departmentID += "8c2b6dba50578d88f2df907ec5334c90";
 		break;
 		case "oncology":
-		departmentID = "7026418d879280bed8297347b2ca50a1";
+		departmentID += "7026418d879280bed8297347b2ca50a1";
 		break;
 		case "ophthalm":
-		departmentID = "c22390f635b19eae5d51a1486a385555";
+		departmentID += "c22390f635b19eae5d51a1486a385555";
 		break;
 		case "otolaryng":
-		departmentID = "585742baa063c897df6fdc50b8011a56";
+		departmentID += "585742baa063c897df6fdc50b8011a56";
 		break;
 		case "paediatrics":
-		departmentID = "b5708252a1d8a7ba9403806efc06094a";
+		departmentID += "b5708252a1d8a7ba9403806efc06094a";
 		break;
 		case "palm":
-		departmentID = "d9d75cd18ec4b4b7854df8128ff5130f";
+		departmentID += "d9d75cd18ec4b4b7854df8128ff5130f";
 		break;
 		case "physmed":
-		departmentID = "3ec08a4531b921812a63ae11ac298b47";
+		departmentID += "3ec08a4531b921812a63ae11ac298b47";
 		break;
 		case "physpharm":
-		departmentID = "f9b941498a5c5ed2045161274d925665";
+		departmentID += "f9b941498a5c5ed2045161274d925665";
 		break;
 		case "psychiatry":
-		departmentID = "6dc8041f88bef8d31b1d9a1bd98c4654";
+		departmentID += "6dc8041f88bef8d31b1d9a1bd98c4654";
 		break;
 		case "pubhealth":
-		departmentID = "66dc150ec019da336bec91a4ea44c059";
+		departmentID += "66dc150ec019da336bec91a4ea44c059";
 		break;
 		case "robarts":
-		departmentID = "c4148b31709c5b96aec2e876a4647551";
+		departmentID += "c4148b31709c5b96aec2e876a4647551";
 		break;
 		case "surgery":
-		departmentID = "57be9194aa25fd33e51087c1aa24283e";
+		departmentID += "57be9194aa25fd33e51087c1aa24283e";
 		break;
 		default:
 		departmentID = "";
