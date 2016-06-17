@@ -1,15 +1,17 @@
+// Builds an Altmetric API request for data for a specific department and timeframe
+
 var maxNumberOfEntries;
+
 // Get JSON data from API
 function getAltmetricFeed (max, department, timeFrame) {
 	maxNumberOfEntries = max;
 	// Building the API request
-	var departmentID = ""; // default to all departments
 
 	// Get the article class in the HTML
 	var article = document.getElementById("article")
 	article.innerHTML = "";
 
-	if (department == null) {	
+	if (department == null) {
 		var e = document.getElementById("depSelect");
 
 		department = e.options[e.selectedIndex].value;
@@ -20,78 +22,78 @@ function getAltmetricFeed (max, department, timeFrame) {
 		time = f.options[f.selectedIndex].value;
 	}
 
+	departmentID = "%3Agroup%3A";
+
 	switch (department) {
 		case "acb":
-		departmentID = "%3Agroup%3Af62810258889628bbbd57600acd27965ddeca382";
+		departmentID += "f402acbd49958d0ec0f20dfd0ae531bb";
 		break;
 		case "anesthesia":
-		departmentID = "%3Agroup%3A8ddc1a902a63be9b5f7c38a60f3ef3a25fa1ef71";
+		departmentID += "ca0b24ebcff29bebba043ff12d7dda39";
 		break;
 		case "biochem":
-		departmentID = "%3Agroup%3A4b174a109f4f158b73a8ac126d0c10f25e3ce24d";
+		departmentID += "469f416486a6d49c2f5e6fd69cc51cf9";
 		break;
 		case "cns":
-		departmentID = "%3Agroup%3A05f82ae05cc7573d3e8bbdb9eeed3163ec03786a";
+		departmentID += "e815ef885a06e1c4332ff02589ec2934";
 		break;
 		case "dentistry":
-		departmentID = "%3Agroup%3A8ddc1a902a63be9b5f7c38a60f3ef3a25fa1ef71";
+		departmentID += "4682b179521e798a3868854185e92db0";
 		break;
 		case "epibio":
-		departmentID = "%3Agroup%3Aa73cdd08d3157ac7570797a8aeb7fc0870c58e68";
+		departmentID += "d527a21da2f7ba46a819ca99a18857bd";
 		break;
 		case "fam":
-		departmentID = "%3Agroup%3A5d16627f2e33a526847c5f9d7e877ab6b587a059";
-		break;
-		case "robarts":
-		departmentID = "%3Agroup%3Ad8a35bcf0e0706dc34bd974a3148d97c2b23b85a";
-		break;
-		case "microimm":
-		departmentID = "%3Agroup%3A1fb691942f126edac946ef47ac1ffb95074b9271";
+		departmentID += "eb488ad62cb5e3284870a7ae8465ca69";
 		break;
 		case "medbio":
-		departmentID = "%3Agroup%3A249a0dc8f916588cac096d8c7df1f7a4da72c89a";
+		departmentID += "e57631b9b6f463bfa51841828dd2f2e2";
 		break;
 		case "medimg":
-		departmentID = "%3Agroup%3Af4617093a9375070cb5c7576b9fa232f9ed507eb";
+		departmentID += "2420221a7f31a5733a5862c11ff0e1c1";
 		break;
 		case "medicine":
-		departmentID = "%3Agroup%3Acd8c2df26c59ee73a03c6a4ccbbc83cfdb565e7c";
+		departmentID = "3124f507d6317741e882ca7532c6d32c";
+		break;
+		case "microimm":
+		departmentID = "26e63501ae40451ac42d9c13ff655dc7";
 		break;
 		case "obgyn":
-		departmentID = "%3Agroup%3Ab1b3bca15c712f2c3c4894540d2bbcb2e43866cf";
+		departmentID = "8c2b6dba50578d88f2df907ec5334c90";
 		break;
 		case "oncology":
-		departmentID = "%3Agroup%3Ac5688a41cb23d27cdcf260e49acb890c5e9ae70e";
+		departmentID = "7026418d879280bed8297347b2ca50a1";
 		break;
 		case "ophthalm":
-		departmentID = "%3Agroup%3A9d1d0d3a7318ea750720a3824d58589e1b911286";
+		departmentID = "c22390f635b19eae5d51a1486a385555";
 		break;
 		case "otolaryng":
-		departmentID = "%3Agroup%3A4e733be590efee413a287fb4e37610cd3352e5de";
+		departmentID = "585742baa063c897df6fdc50b8011a56";
 		break;
 		case "paediatrics":
-		departmentID = "%3Agroup%3Aa05cf8721857b33bbb9c48642970dcd6537f541f";
+		departmentID = "b5708252a1d8a7ba9403806efc06094a";
 		break;
 		case "palm":
-		departmentID = "%3Agroup%3A92c05b013ad05c81bd6fea732f46588b5aaec337";
+		departmentID = "d9d75cd18ec4b4b7854df8128ff5130f";
 		break;
 		case "physmed":
-		departmentID = "%3Agroup%3A60f76a85a1afce7b3345572957905e9cec460541";
+		departmentID = "3ec08a4531b921812a63ae11ac298b47";
 		break;
 		case "physpharm":
-		departmentID = "%3Agroup%3A00b870bd72ecc6c74b3d5688bb1cc5c541a5ad18";
+		departmentID = "f9b941498a5c5ed2045161274d925665";
 		break;
 		case "psychiatry":
-		departmentID = "%3Agroup%3A0adfba1ae23ae5a2b4ab3f9d5d2432ba1274b459";
+		departmentID = "6dc8041f88bef8d31b1d9a1bd98c4654";
 		break;
 		case "pubhealth":
-		departmentID = "%3Agroup%3A8aa496e1312f451e8de9e49d7f0686bb3411a6e0";
+		departmentID = "66dc150ec019da336bec91a4ea44c059";
+		break;
+		case "robarts":
+		departmentID = "c4148b31709c5b96aec2e876a4647551";
 		break;
 		case "surgery":
-		departmentID = "%3Agroup%3Af386e273e072a19088478636787e8266ccfbcc8e";
+		departmentID = "57be9194aa25fd33e51087c1aa24283e";
 		break;
-
-
 		default:
 		departmentID = "";
 
@@ -109,25 +111,27 @@ function getAltmetricFeed (max, department, timeFrame) {
 	xhr.onload = function () {
 		var data = JSON.parse(xhr.responseText).top_citations_by_mentions;
 
+		// Sort the articles by altmetric score
 		sortJSONByProperty(data, 'altmetric_score.score', -1);
 
 		if (data.length == 0)
 			article.innerHTML += "No results found!";
 		else {
-
+			// Determine how many articles to show based on number of results and the max limit
 			var limit = (data.length < maxNumberOfEntries) ? data.length : maxNumberOfEntries;
 
+			// Iterate through each article and add it to the webpage
 			for (var i = 0; i < limit; i++) {
 				var value = data[i];
 
+				// Create the donut div
 				var newdiv = document.createElement("div");
 				newdiv.setAttribute("class","altmetric-embed");
 				newdiv.setAttribute("data-badge-type", "medium-donut");
 
 				// if it doesn't have a doi...
-				if (typeof value.doi == 'undefined') {
+				if (typeof value.doi == 'undefined')
 					newdiv.setAttribute("data-pmid", value.pmid);
-				}
 				else
 					newdiv.setAttribute("data-doi", value.doi);
 
