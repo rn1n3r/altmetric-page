@@ -100,7 +100,7 @@ function getAltmetricFeed (max, department, timeFrame) {
 	}
 
 	// Altmetric API call to get top mentioned articles for past week
-	var api = "https://www.altmetric.com/api/v1/summary_report/" + time + "?num_results=100&group=schulichmd" + departmentID + "&citation_type=news%2Carticle%2Cclinical_trial_study_record%2Cdataset%2Cbook%2Cgeneric&order_by=score";
+	var api = "https://www.altmetric.com/api/v1/summary_report/" + time + "?num_results=100&key=9a2316dffc63415436fd01a3cc27510e&group=schulichmd" + departmentID + "&citation_type=news%2Carticle%2Cclinical_trial_study_record%2Cdataset%2Cbook%2Cgeneric&order_by=score";
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", api);
 
@@ -142,6 +142,10 @@ function getAltmetricFeed (max, department, timeFrame) {
 
 				// Get the author string
 				var authors = value.authors;
+				
+				if (authors.indexOf(", ") > -1) {
+					authors.splice(authors.indexOf(", "), 1);
+				}
 				if (typeof authors == 'undefined');
 				else if (authors.length > 6) {
 					authors = authors.slice(0,5); // cut off if more than 10 authors
